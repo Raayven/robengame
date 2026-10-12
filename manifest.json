@@ -1,0 +1,10 @@
+{
+  "name": "8 Songs for Yassin 🖤",
+  "short_name": "For Yassin",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#020202",
+  "theme_color": "#ff2e63",
+  "orientation": "portrait",
+  "icons": [{ "src": "guitar-bg.jpg", "sizes": "512x512", "type": "image/jpeg" }]
+}
