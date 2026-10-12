@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>8 Songs for Yassin 🎸🖤</title>
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="8 Songs for Yassin">
+<link rel="apple-touch-icon" href="guitar-bg.jpg">
+<meta name="theme-color" content="#ff2e63">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=UnifrakturMaguntia&display=swap');
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+body{
+  background:#020202 url('guitar-bg.jpg') no-repeat center center; background-size:cover;
+  height:100vh; height:100dvh; overflow:hidden; display:flex; flex-direction:column; align-items:center; color:#ffb3b3; font-family:'Cinzel',serif;
+}
+body::before{ content:''; position:fixed; inset:0; background:radial-gradient(ellipse at center, transparent 10%, rgba(0,0,0,0.55) 55%, #000 88%); pointer-events:none; z-index:1; }
+#top,#songName,#artist,#lyrics,#progress,#list,#guitarWrap,#hint{ z-index:2; position:relative; }
+#top{ width:100%; max-width:420px; display:flex; justify-content:space-between; padding:14px 18px 6px; font-size:12px; color:#ff8aa0; }
+#songName{ font-family:'UnifrakturMaguntia'; font-size:27px; color:#ff2e63; text-shadow:0 0 20px #ff2e63, 0 0 40px #000; text-align:center; margin:2px 0; min-height:34px; }
+#artist{ font-size:10px; color:#ffb3b3cc; letter-spacing:1.5px; background:rgba(0,0,0,0.65); padding:4px 12px; border-radius:20px; margin-bottom:5px; border:1px solid #ff2e6320; }
+#lyrics{ width:92%; max-width:400px; min-height:58px; margin:5px 0; background:rgba(0,0,0,0.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid #ff2e6340; border-radius:16px; padding:10px 14px; text-align:center; font-family:'UnifrakturMaguntia'; font-size:16px; line-height:1.6; color:#ffb3b3; box-shadow:0 4px 20px #000; }
+#lyrics b{ color:#ff2e63; text-shadow:0 0 14px #ff2e63; font-size:21px; animation:pop 0.3s; display:inline-block; }
+@keyframes pop{ from{ transform:scale(0.7); } to{ transform:scale(1.15); } }
+#progress{ width:92%; max-width:400px; height:5px; background:rgba(0,0,0,0.65); border-radius:10px; overflow:hidden; margin:5px 0; border:1px solid #2a1a1a; }
+#bar{ height:100%; width:0%; background:linear-gradient(90deg,#ff2e63,#fff); transition:0.25s; box-shadow:0 0 12px #ff2e63; }
+#list{ display:flex; gap:6px; margin:7px 0; flex-wrap:wrap; justify-content:center; max-width:400px; }
+.dotSong{ width:23px; height:23px; border-radius:50%; background:rgba(0,0,0,0.75); border:1px solid #3a2020; display:flex; align-items:center; justify-content:center; font-size:10px; color:#ff6b8a70; transition:0.3s; }
+.dotSong.active{ background:#ff2e63; color:white; box-shadow:0 0 12px #ff2e63; transform:scale(1.25); }
+.dotSong.done{ background:#2a1a1a; color:#ff6b8a; border-color:#ff2e63; }
+#guitarWrap{ position:relative; width:94%; max-width:400px; height:50vh; margin-top:4px; }
+#guitarBody{ width:100%; height:100%; background:linear-gradient(180deg,rgba(34,18,18,0.86),rgba(13,7,7,0.92)); backdrop-filter:blur(5px); border:2px solid #3a2020; border-radius:28px; display:flex; justify-content:space-evenly; align-items:center; padding:28px 14px; position:relative; box-shadow:0 0 40px #000, inset 0 0 25px #000, 0 0 18px #ff2e6315; }
+#guitarBody::before{ content:''; position:absolute; width:98px; height:98px; background:radial-gradient(circle,#1a0a0a,#000); border:2px solid #2a1a1a; border-radius:50%; left:50%; top:46%; transform:translate(-50%,-50%); box-shadow:inset 0 0 20px #000; }
+.string{ width:6px; height:88%; background:linear-gradient(90deg,#777,#eee,#777); border-radius:10px; position:relative; z-index:3; cursor:pointer; box-shadow:0 0 7px #ffffff30; }
+.string::after{ content:''; position:absolute; inset:-24px -24px; }
+.string.target{ background:linear-gradient(90deg,#ff2e63,#fff,#ff2e63); box-shadow:0 0 28px #ff2e63, 0 0 55px #ff2e63; animation:pulse 0.6s infinite alternate; }
+@keyframes pulse{ from{ transform:scaleX(1); } to{ transform:scaleX(2.3); } }
+.string.hit{ animation:hit 0.35s; }
+@keyframes hit{ 0%{ background:white; transform:scaleX(2.7); } 100%{ transform:scaleX(1); } }
+.noteFly{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'UnifrakturMaguntia'; font-size:22px; color:#ff2e63; pointer-events:none; animation:fly 0.9s forwards; text-shadow:0 0 10px #ff2e63; z-index:10; }
+@keyframes fly{ to{ transform:translate(-50%,-85px) scale(1.5); opacity:0; } }
+#final{ display:none; position:absolute; inset:0; background:rgba(0,0,0,0.92); backdrop-filter:blur(8px); border-radius:28px; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:20px; z-index:20; }
+#hint{ font-size:10px; color:#ffb3b3aa; margin-top:7px; background:rgba(0,0,0,0.55); padding:5px 12px; border-radius:12px; border:1px solid #ffffff10; }
+</style>
+</head>
+<body>
+<div id="top"><div>🎸 <span id="level">1</span>/8</div><div>❤️ <span id="lives">3</span></div></div>
+<div id="songName">Nothing Else Matters</div>
+<div id="artist">METALLICA • LEVEL 1</div>
+<div id="lyrics">Tap the glowing string to start... 🎸</div>
+<div id="progress"><div id="bar"></div></div>
+<div id="list"></div>
+<div id="guitarWrap"><div id="guitarBody"><div class="string" data-i="0"></div><div class="string" data-i="1"></div><div class="string" data-i="2"></div><div class="string" data-i="3"></div><div class="string" data-i="4"></div><div class="string" data-i="5"></div><div id="final"></div></div></div>
+<div id="hint"play my heart </div>
+<script>
+const songs = [
+  { name:"Nothing Else Matters", artist:"METALLICA", lyrics:["So","close","no","matter","how","far","Couldn't","be","much","more","from","the","heart","Forever","trust","in","who","we","are"], notes:[ {s:0,f:82},{s:1,f:110},{s:2,f:146},{s:3,f:196},{s:4,f:247},{s:3,f:196},{s:2,f:146},{s:1,f:110},{s:0,f:82},{s:2,f:146},{s:3,f:196},{s:4,f:247},{s:5,f:330},{s:4,f:247},{s:3,f:196},{s:2,f:146},{s:1,f:110},{s:0,f:82},{s:2,f:146} ] },
+  { name:"Perfect", artist:"ED SHEERAN", lyrics:["I","found","a","love","for","me","Darling","just","dive","right","in","and","follow","my","lead","I","found","a","girl","beautiful","and","sweet"], notes:[ {s:2,f:146},{s:3,f:196},{s:4,f:247},{s:5,f:330},{s:5,f:330},{s:4,f:247},{s:3,f:196},{s:2,f:164},{s:3,f:196},{s:4,f:220},{s:4,f:220},{s:3,f:196},{s:2,f:146},{s:1,f:123},{s:0,f:82},{s:1,f:110},{s:2,f:146},{s:3,f:196},{s:4,f:247},{s:5,f:293},{s:5,f:330},{s:4,f:247} ] },
+  { name:"Let It Be", artist:"THE BEATLES", lyrics:["When","I","find","myself","in","times","of","trouble","Mother","Mary","comes","to","me","Speaking","words","of","wisdom","Let","it","be"], notes:[ {s:2,f:130},{s:2,f:146},{s:2,f:164},{s:3,f:196},{s:4,f:247},{s:4,f:220},{s:3,f:196},{s:2,f:164},{s:3,f:196},{s:4,f:220},{s:4,f:247},{s:5,f:293},{s:4,f:247},{s:3,f:196},{s:2,f:146},{s:2,f:130},{s:2,f:146},{s:3,f:196},{s:4,f:247},{s:5,f:293} ] },
+  { name:"Romance d'Amour", artist:"JEUX INTERDITS", lyrics:["♫","No","words","needed","Just","guitar","and","heart","♫","Your","love","is","the","melody","I","play","every","night"], notes:[ {s:5,f:329},{s:4,f:247},{s:3,f:196},{s:2,f:146},{s:3,f:196},{s:4,f:247},{s:5,f:329},{s:5,f:392},{s:5,f:329},{s:4,f:293},{s:4,f:247},{s:3,f:220},{s:3,f:196},{s:2,f:164},{s:3,f:196},{s:4,f:247},{s:5,f:329},{s:5,f:440} ] },
+  { name:"Hotel California", artist:"EAGLES", lyrics:["On","a","dark","desert","highway","Cool","wind","in","my","hair","Warm","smell","of","colitas","Rising","up","through","the","air"], notes:[ {s:1,f:110},{s:2,f:146},{s:3,f:185},{s:4,f:220},{s:4,f:247},{s:3,f:185},{s:2,f:146},{s:1,f:123},{s:2,f:146},{s:3,f:185},{s:4,f:220},{s:5,f:293},{s:5,f:329},{s:4,f:247},{s:3,f:196},{s:2,f:146},{s:1,f:110},{s:2,f:146},{s:3,f:185} ] },
+  { name:"Stairway to Heaven", artist:"LED ZEPPELIN", lyrics:["There's","a","lady","who's","sure","All","that","glitters","is","gold","And","she's","buying","a","stairway","to","heaven"], notes:[ {s:0,f:82},{s:1,f:110},{s:2,f:130},{s:2,f:146},{s:3,f:174},{s:3,f:196},{s:4,f:220},{s:4,f:247},{s:5,f:293},{s:4,f:247},{s:3,f:196},{s:2,f:146},{s:1,f:110},{s:0,f:82},{s:0,f:98},{s:1,f:123},{s:2,f:146} ] },
+  { name:"Riptide", artist:"VANCE JOY", lyrics:["I","was","scared","of","dentists","and","the","dark","I","was","scared","of","pretty","girls","and","starting","conversations"], notes:[ {s:0,f:82},{s:0,f:98},{s:1,f:110},{s:2,f:146},{s:2,f:146},{s:1,f:110},{s:0,f:98},{s:1,f:110},{s:2,f:130},{s:2,f:146},{s:3,f:196},{s:3,f:174},{s:2,f:146},{s:1,f:110},{s:0,f:98},{s:1,f:110},{s:2,f:146} ] },
+  { name:"Such a Lonely Day", artist:"FOR YASSIN 🖤", lyrics:["And","if","a","double","decker","bus","Crashes","into","us","To","die","by","your","side","Is","such","a","heavenly","way","to","die"], notes:[ {s:2,f:146},{s:2,f:164},{s:3,f:196},{s:4,f:220},{s:4,f:247},{s:3,f:196},{s:2,f:164},{s:1,f:123},{s:0,f:98},{s:1,f:110},{s:2,f:146},{s:3,f:196},{s:4,f:247},{s:5,f:330},{s:5,f:392},{s:4,f:247},{s:3,f:196},{s:2,f:146},{s:2,f:164},{s:3,f:196},{s:4,f:247} ] }
+];
+let audioCtx; function getCtx(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); return audioCtx; }
+function playFreq(freq, wrong=false){ const ctx=getCtx(); const o=ctx.createOscillator(); const g=ctx.createGain(); const f=ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=wrong?350:1900; o.type=wrong?'sawtooth':'triangle'; o.frequency.value=wrong?70:freq; g.gain.setValueAtTime(wrong?0.28:0.42, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+(wrong?0.35:1.35)); o.connect(f); f.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+1.4); }
+let cur=0, idx=0, lives=3;
+const songNameEl=document.getElementById('songName'), artistEl=document.getElementById('artist'), barEl=document.getElementById('bar'), levelEl=document.getElementById('level'), livesEl=document.getElementById('lives'), finalDiv=document.getElementById('final'), listEl=document.getElementById('list'), lyricsEl=document.getElementById('lyrics'), strings=document.querySelectorAll('.string');
+function renderList(){ listEl.innerHTML=''; songs.forEach((s,i)=>{ const d=document.createElement('div'); d.className='dotSong'+(i===cur?' active':i<cur?' done':''); d.textContent=i+1; listEl.appendChild(d); }); }
+function load(i){ cur=i; idx=0; songNameEl.textContent=songs[i].name; artistEl.textContent=songs[i].artist+' • LEVEL '+(i+1); levelEl.textContent=i+1; lives=3; livesEl.textContent=lives; lyricsEl.innerHTML='Tap the glowing string... 🎸'; renderList(); updateBar(); highlight(); finalDiv.style.display='none'; }
+function updateBar(){ barEl.style.width=(idx/songs[cur].notes.length*100)+'%'; }
+function highlight(){ strings.forEach(s=>s.classList.remove('target')); if(idx<songs[cur].notes.length){ strings[songs[cur].notes[idx].s].classList.add('target'); } }
+function flyNote(x){ const n=document.createElement('div'); n.className='noteFly'; n.textContent='♪'; n.style.left=x+'px'; document.getElementById('guitarBody').appendChild(n); setTimeout(()=>n.remove(),900); }
+function replaySong(songIdx, callback){ const notes=songs[songIdx].notes; const words=songs[songIdx].lyrics; strings.forEach(s=>s.classList.remove('target')); let i=0; function playNext(){ if(i>=notes.length){ if(callback) callback(); return; } const note=notes[i]; const el=strings[note.s]; el.classList.add('target'); setTimeout(()=>el.classList.remove('target'),280); playFreq(note.f,false); flyNote(el.offsetLeft); if(words && words[i]) lyricsEl.innerHTML = words.slice(0,i+1).map((w,j)=> j===i? `<b>${w}</b>` : `<span style="opacity:0.4;font-size:13px">${w}</span>`).join(' '); barEl.style.width=(i/notes.length*100)+'%'; i++; setTimeout(playNext, 400); } playNext(); }
+function hit(sIdx){ if(idx>=songs[cur].notes.length) return; const exp=songs[cur].notes[idx]; if(sIdx===exp.s){ const el=strings[sIdx]; el.classList.remove('target'); el.classList.add('hit'); setTimeout(()=>el.classList.remove('hit'),350); playFreq(exp.f,false); flyNote(el.offsetLeft); const words=songs[cur].lyrics; if(words) lyricsEl.innerHTML=words.slice(0,idx+1).map((w,j)=> j===idx? `<b>${w}</b>` : `<span style="opacity:0.4;font-size:13px">${w}</span>`).join(' '); idx++; updateBar(); if(idx>=songs[cur].notes.length){ strings.forEach(s=>s.classList.remove('target')); finalDiv.style.display='flex'; finalDiv.innerHTML=`<div style="color:#ff8aa0">You played<br><b style="color:#ff2e63;font-size:20px">${songs[cur].name}</b><br><br>Listen... 🎸</div>`; setTimeout(()=>{ replaySong(cur, ()=>{ if(cur<songs.length-1){ finalDiv.innerHTML=`<div style="color:#ff8aa0">Perfect! 🖤<br><b style="color:#ff2e63">${songs[cur].name}</b></div><br><button onclick="next()" style="background:#ff2e63;color:white;border:none;padding:11px 28px;border-radius:22px;font-weight:700">Next: ${songs[cur+1].name} →</button><br><button onclick="replayCurrent()" style="margin-top:8px;background:transparent;border:1px solid #ff2e63;color:#ff8aa0;padding:8px 20px;border-radius:20px">Replay ↺</button>`; } else { finalDiv.innerHTML=`<div style="font-family:'UnifrakturMaguntia';font-size:26px;color:#ff2e63">You played all 8 for Yassin 🥀</div><br><button onclick="replayCurrent()" style="background:transparent;border:1px solid #ff2e63;color:#ff8aa0;padding:8px 20px;border-radius:20px;margin-bottom:8px">Listen Again ♪</button><br><button onclick="restart()" style="background:#ff2e63;color:white;border:none;padding:10px 26px;border-radius:22px">Play Again ♡</button>`; } }); }, 600); } else setTimeout(highlight,200); } else { const el=strings[sIdx]; playFreq(0,true); lives--; livesEl.textContent=lives; if(lives<=0){ finalDiv.style.display='flex'; finalDiv.innerHTML=`<div style="color:#ff8aa0">Strings broke 🥀</div><br><button onclick="reloadCur()" style="background:white;color:#ff2e63;border:none;padding:9px 22px;border-radius:20px;font-weight:700">Retry ${songs[cur].name} 🖤</button>`; } } }
+function next(){ finalDiv.style.display='none'; load(cur+1); }
+function reloadCur(){ finalDiv.style.display='none'; load(cur); }
+function restart(){ finalDiv.style.display='none'; load(0); }
+function replayCurrent(){ finalDiv.innerHTML=`<div style="color:#ff8aa0">Replaying ${songs[cur].name}... 🎸</div>`; replaySong(cur, ()=>{ finalDiv.style.display='none'; load(cur); }); }
+strings.forEach(s=>{ s.addEventListener('touchstart',e=>{ e.preventDefault(); getCtx(); hit(parseInt(s.dataset.i)); }, {passive:false}); s.addEventListener('mousedown',()=>{ getCtx(); hit(parseInt(s.dataset.i)); }); });
+const keys=['a','s','d','f','g','h']; document.addEventListener('keydown',e=>{ const i=keys.indexOf(e.key.toLowerCase()); if(i!==-1){ getCtx(); hit(i); } });
+document.body.addEventListener('touchend',()=>{ getCtx(); }, {once:true});
+load(0);
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('data:text/javascript;base64,'+btoa('self.addEventListener(\"fetch\",e=>{})')); }
+</script>
+</body>
+</html>
